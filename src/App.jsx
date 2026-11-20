@@ -176,6 +176,7 @@ export default function App() {
   // Cash on Delivery Checkout Form State
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(null);
+  const [orderCounter, setOrderCounter] = useState(104820);
   const [codForm, setCodForm] = useState({
     fullName: "",
     phone: "",
@@ -1653,8 +1654,10 @@ export default function App() {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
+                      const nextId = orderCounter + 1;
+                      setOrderCounter(nextId);
                       setOrderPlaced({
-                        orderId: `DSML-${Math.floor(100000 + Math.random() * 900000)}`,
+                        orderId: `DSML-${nextId}`,
                         name: codForm.fullName,
                         phone: codForm.phone,
                         email: codForm.email,
